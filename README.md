@@ -1,2 +1,2 @@
 # litelement-app
-This repo uses the python-api-server as a data soure
+This repo uses the python-api-server repo as a data soure
