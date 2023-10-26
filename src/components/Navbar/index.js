@@ -43,18 +43,12 @@ export class Navbar extends LitElement {
                             <li><a class="menu__item" href="/Crypto">Crypto</a></li>
                             <li><a class="menu__item" href="/Users">Users</a></li>
                             <li><a class="menu__item" href="/Books">Books</a></li>
+                            <li><a class="menu__item" href="/Stocks">Stocks</a></li>
                             <li><a class="menu__item" href="/About">About</a></li>
                         </ul>
                     </div>
                     <div class="dm-flex">
-                        <a
-                            aria-label="Darkmatter"
-                            class="dm-nav-item site-name dm-text-larger dm-bold"
-                            href="/"
-                            tabindex="-1"
-                        >
-                            DarkMatter
-                        </a>
+                        <a class="dm-nav-item site-name dm-text-larger dm-bold" href="/" tabindex="-1"> Marquee </a>
                         <img class="logo" src="logo2.png" height="25" alt="dark matter" />
                     </div>
                 </nav>

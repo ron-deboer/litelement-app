@@ -41,6 +41,14 @@ function initRouter() {
             },
         },
         {
+            path: "/stocks",
+            component: "stock-list",
+            action: () => {
+                import("./pages/Stocks");
+                closeMenu();
+            },
+        },
+        {
             path: "/about",
             component: "my-about",
             action: () => {

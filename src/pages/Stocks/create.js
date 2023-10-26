@@ -1,9 +1,8 @@
 import { LitElement, html } from "lit";
 import store from "../../store";
 
-class Crypto extends LitElement {
+class CreateUser extends LitElement {
     static properties = {
-        audusd: 0.66,
         data: [],
         filter: "",
     };
@@ -12,7 +11,7 @@ class Crypto extends LitElement {
         super();
         this.data = [];
         this.filter = "";
-        this.filtered = "";
+        this.filtered = [];
     }
 
     connectedCallback() {
@@ -20,11 +19,11 @@ class Crypto extends LitElement {
         super.connectedCallback();
         window.addEventListener("APP_STATE", (e) => {
             // console.log(e);
-            if (e.detail.item == "crypto") {
-                _this.getCrypto();
+            if (e.detail.item == "users") {
+                _this.getUsers();
             }
         });
-        this.getCrypto();
+        this.getUsers();
     }
 
     disconnectedCallback() {
@@ -32,28 +31,22 @@ class Crypto extends LitElement {
         window.removeEventListener("APP_STATE", (e) => {});
     }
 
-    getCrypto() {
-        this.audusd = store.state.audusd;
-        this.data = store.state.crypto;
+    getUsers() {
+        this.data = store.state.users;
         this.filtered = this.data;
-    }
-
-    fmtNum(n) {
-        var parts = n.toString().split(".");
-        return parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (parts[1] ? "." + parts[1] : "");
     }
 
     onUpdate(e) {
         this.filter = e.target.value.toUpperCase();
-        this.filtered = this.data.filter((c) => {
-            return c.symbol.startsWith(this.filter);
+        this.filtered = this.data.filter((u) => {
+            return u.name.startsWith(this.filter);
         });
     }
 
     render() {
         return html`
-            <div class="dm-page-head dm-flex-space-between">
-                <h3>Crypto List</h3>
+            <div class="dm-flex-space-between">
+                <h3>User List</h3>
                 <span>
                     Filter :
                     <input
@@ -67,20 +60,20 @@ class Crypto extends LitElement {
             <table class="dm-table dm-table-striped">
                 <thead>
                     <tr>
-                        <th>Coin</th>
-                        <th>Symbol</th>
-                        <th>Price (USD)</th>
-                        <th>Price (AUD)</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>City</th>
                     </tr>
                 </thead>
                 <tbody>
-                    ${this.filtered.map((coin) => {
+                    ${this.filtered.map((user) => {
                         return html`
                             <tr>
-                                <td label="Coin">${coin.name}</td>
-                                <td label="Symbol">${coin.symbol}</td>
-                                <td label="Price (USD)">${this.fmtNum(coin.price)}</td>
-                                <td label="Price (AUD)">${this.fmtNum(coin.price / this.audusd)}</td>
+                                <td>${user.name}</td>
+                                <td>${user.username}</td>
+                                <td>${user.email}</td>
+                                <td>${user.address.city}</td>
                             </tr>
                         `;
                     })}
@@ -94,4 +87,4 @@ class Crypto extends LitElement {
     }
 }
 
-customElements.define("crypto-list", Crypto);
+customElements.define("create-user", CreateUser);

@@ -69,3 +69,37 @@
 .menu__item:hover {
     background-color: #cfd8dc;
 }
+/*
+ * Stock list
+ */
+.stock-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.stock-card {
+    border: 1px solid #888;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    white-space: nowrap;
+    text-align: center;
+    background: #eef;
+    flex: 1 1 0;
+}
+.stock-card > :nth-child(1) {
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 400;
+}
+.stock-card > :nth-child(2) {
+    font-size: 120%;
+    font-weight: 600;
+}
+.stock-card > :nth-child(3):before {
+    content: "Price: ";
+    color: blue;
+}
+.stock-card > :nth-child(4):before {
+    content: "Mkt Cap: ";
+    color: crimson;
+}

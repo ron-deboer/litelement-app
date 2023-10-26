@@ -2,12 +2,21 @@ import { LitElement, html } from "lit";
 import store from "../../store";
 
 class CreateBook extends LitElement {
+    static properties = {
+        _book: { state: true },
+        _errors: { state: true },
+    };
+
     constructor() {
         super();
         this._book = {
             title: "",
             author: "",
             published: "",
+        };
+        this._errors = {
+            title: "",
+            author: "",
         };
     }
 
@@ -21,10 +30,21 @@ class CreateBook extends LitElement {
 
     saveData() {
         // console.log(this._book);
-        let data = store.state.books;
-        data.push(this._book);
-        store.setState("books", data);
-        this.closeModal();
+        let err = false;
+        this._book.title = this._book.title.trim();
+        this._book.author = this._book.author.trim();
+        if (this._book.title == "") {
+            this._errors = { ...this._errors, title: "A title is required" };
+            err = true;
+        }
+        if (this._book.author == "") {
+            this._errors = { ...this._errors, author: "An author is required" };
+            err = true;
+        }
+        if (!err) {
+            store.insert("books", this._book);
+            this.closeModal();
+        }
     }
 
     closeModal() {
@@ -38,7 +58,7 @@ class CreateBook extends LitElement {
     render() {
         return html`
             <div class="dm-title">
-                <h3>Create Book</h3>
+                <h3>Create New Book</h3>
             </div>
             <form class="dm-form dm-form-vertical" onsubmit="javascript:return false;">
                 <div class="dm-fieldset">
@@ -50,6 +70,7 @@ class CreateBook extends LitElement {
                         value=${this._book.title}
                         class="dm-input"
                     />
+                    ${!!this._errors.title ? html`<div class="dm-error">${this._errors.title}</div>` : ``}
                 </div>
                 <div class="dm-fieldset">
                     <label class="dm-label">Author</label>
@@ -60,6 +81,7 @@ class CreateBook extends LitElement {
                         value=${this._book.author}
                         class="dm-input"
                     />
+                    ${!!this._errors.author ? html`<div class="dm-error">${this._errors.author}</div>` : ``}
                 </div>
                 <div class="dm-fieldset">
                     <label class="dm-label">Year Published</label>

@@ -34,9 +34,7 @@ class Books extends LitElement {
     }
 
     getBooks() {
-        console.log("getBooks");
         this.data = store.state.books;
-        console.log(this.data);
         this.filtered = this.data;
     }
 
@@ -65,7 +63,7 @@ class Books extends LitElement {
                     />
                 </div>
                 <div>
-                    <a href="#" @click=${this.openModalCreate}>+ New Book</a>
+                    <a class="dm-badge dm-primary dm-link" href="#" @click=${this.openModalCreate}>+ New Book</a>
                 </div>
             </div>
             <table class="dm-table dm-table-striped">

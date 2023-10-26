@@ -92,12 +92,12 @@ body {
 input:not([type="submit"]),
 select,
 textarea {
-    padding: 0.25rem;
+    padding: 0.15rem 0.25rem;
     border: 1px solid var(--border-color);
     width: 100%;
     max-width: 100%;
     outline: none;
-    color: #888;
+    color: #444;
 }
 
 select > option {
@@ -142,6 +142,8 @@ button,
     text-decoration: none;
     border: none;
     outline: none;
+    border-radius: 4px;
+    margin-top: 1rem;
 }
 
 button:hover,
@@ -149,6 +151,16 @@ button:hover,
     color: white;
     text-decoration: none;
     background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0 0);
+}
+
+.dm-badge {
+    padding: 0.1rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 10px;
+}
+
+.dm-link {
+    text-decoration: none;
 }
 
 .dm-button-small {
@@ -192,6 +204,21 @@ button:hover,
 .dm-danger {
     background: #dc3545;
     color: white;
+}
+
+.dm-error {
+    color: #dc3545;
+    /* border: 1px solid #dc3545; */
+    font-size: 75%;
+    padding: 0rem 0.25rem;
+}
+
+.dm-hide {
+    display: none !important;
+}
+
+.dm-show {
+    display: block !important;
 }
 
 .dm-outline {
@@ -339,12 +366,12 @@ ul.dm-navbar-nav li {
     display: block;
     color: #888;
     font-size: 0.875rem;
+    margin-top: 0.5rem;
 }
 
 .dm-input,
 .dm-select {
     width: 14rem !important;
-    margin-bottom: 0.5rem;
 }
 
 .dm-input-small {

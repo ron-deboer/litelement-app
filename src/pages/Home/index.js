@@ -9,8 +9,8 @@ export class Home extends LitElement {
     render() {
         return html`
             <div class="dm-hero dm-mt-3">
-                <div class="dm-title">Welcome to DarkMatter</div>
-                <div class="dm-lead">DarkMatter is a demo of LitElement web components.</div>
+                <div class="dm-title">Welcome to Marquee</div>
+                <div class="dm-lead">Marquee is a demo of LitElement web components.</div>
             </div>
         `;
     }
